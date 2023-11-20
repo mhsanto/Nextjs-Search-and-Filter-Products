@@ -9,8 +9,8 @@ const Navigation = () => {
           {/* //logo section */}
           <Image
             src="/logo.png"
-            width={80}
-            height={80}
+            width={70}
+            height={70}
             alt="logo"
             className="object-contain aspect-square"
           />
@@ -18,9 +18,10 @@ const Navigation = () => {
         <div className="flex items-center ring-2  bg-slate-50 rounded-lg overflow-hidden ring-slate-400 px-1">
           <input
             type="search"
-            className="bg-slate-50  p-1 focus:outline-none rounded-lg"
+            className="bg-slate-50  p-1 focus:outline-none rounded-lg placeholder:text-sm placeholder:text-slate-400/80"
+            placeholder="search products here..."
           />
-          <Search className="cursor-pointer"/>
+          <Search className="cursor-pointer" />
         </div>
 
         <div className="icons flex items-center gap-4">
