@@ -1,7 +1,7 @@
-"use client";
 import Image from "next/image";
 import { ShoppingBag } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type ProductProps = {
   item: Product;
@@ -10,7 +10,8 @@ const Product: React.FC<ProductProps> = ({ item }) => {
   const router = useRouter();
 
   return (
-    <div
+    <Link
+      href={`${item.id}`}
       className="card max-w-fit flex-grow  bg-white text-black rounded-sm px-2 group overflow-hidden transition-all duration-300 cursor-pointer hover:ring-2 border-transparent"
       onClick={() => router.push(`/${item.id}`)}
     >
@@ -33,7 +34,7 @@ const Product: React.FC<ProductProps> = ({ item }) => {
           <ShoppingBag />
         </button>
       </div>
-    </div>
+    </Link>
   );
 };
 
