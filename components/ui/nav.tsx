@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Navigation = () => {
   return (
-    <nav className="w-full bg-white text-black">
+    <nav className="w-full bg-white text-black relative z-20 shadow-md">
       <header className="container mx-auto flex items-center justify-between">
         <div className="logo">
           {/* //logo section */}
