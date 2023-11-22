@@ -12,8 +12,8 @@ type ProductProps = {
 };
 
 const ProductPage = ({ searchParams, params: { productId } }: ProductProps) => {
-  const selectedColor = searchParams.color;
-  const selectedSize = searchParams.size;
+  const selectedColor = (searchParams.color || "white") as string;
+  const selectedSize = (searchParams.size || "sm") as string;
 
   // code for client component
   // const searchParams = useSearchParams();
@@ -45,7 +45,7 @@ const ProductPage = ({ searchParams, params: { productId } }: ProductProps) => {
     <div className="flex justify-center w-max mx-auto px-7 py-5 bg-slate-200/50 rounded gap-6 mt-7">
       {/* //product image */}
       <div className="">
-        {images ? (
+        {item.images && images ? (
           <Image
             src={images[selectedColor as keyof typeof images]}
             alt={title || ""}
@@ -54,7 +54,13 @@ const ProductPage = ({ searchParams, params: { productId } }: ProductProps) => {
             className="rounded-lg shadow-md object-cover"
           />
         ) : (
-          <p>Loading...</p>
+          <Image
+            src={img}
+            alt={title || ""}
+            width={450}
+            height={700}
+            className="rounded-lg shadow-md object-contain aspect-square"
+          />
           // You can replace this with any loading indicator or fallback content
         )}
       </div>
@@ -71,7 +77,10 @@ const ProductPage = ({ searchParams, params: { productId } }: ProductProps) => {
         <div className="flex gap-4">
           {size.map((item, i) => (
             <Link
-              href={`?color=${selectedColor}&size=${item}`}
+              href={`?${new URLSearchParams({
+                color: selectedColor,
+                size: item,
+              })}`}
               className={` w-10 flex items-center justify-center h-10 rounded-full
               ${
                 selectedSize === item
@@ -88,7 +97,10 @@ const ProductPage = ({ searchParams, params: { productId } }: ProductProps) => {
         <div className="flex gap-4">
           {color.map((c, i) => (
             <Link
-              href={`?color=${c}&size=${selectedSize}`}
+              href={`?${new URLSearchParams({
+                color: c,
+                size: selectedSize,
+              })}`}
               className={`bg-gray-100 px-4 py-1 rounded-full ring-2`}
               style={
                 selectedColor === "white" && c === "white"

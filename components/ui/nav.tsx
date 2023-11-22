@@ -1,11 +1,12 @@
 import { Search, ShoppingBagIcon, User } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Navigation = () => {
   return (
     <nav className="w-full bg-white text-black relative z-20 shadow-md">
       <header className="container mx-auto flex items-center justify-between">
-        <div className="logo">
+        <Link href="/" className="logo">
           {/* //logo section */}
           <Image
             src="/logo.png"
@@ -14,7 +15,7 @@ const Navigation = () => {
             alt="logo"
             className="object-contain aspect-square"
           />
-        </div>
+        </Link>
         <div className="flex items-center ring-2  bg-slate-50 rounded-lg overflow-hidden ring-slate-400 px-1">
           <input
             type="search"
