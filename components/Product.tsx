@@ -1,26 +1,22 @@
 import Image from "next/image";
 import { ShoppingBag } from "lucide-react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 type ProductProps = {
   item: Product;
 };
 const Product: React.FC<ProductProps> = ({ item }) => {
-  const router = useRouter();
-
   return (
     <Link
       href={`${item.id}`}
       className="card max-w-fit flex-grow  bg-white text-black rounded-sm px-2 group overflow-hidden transition-all duration-300 cursor-pointer hover:ring-2 border-transparent"
-      onClick={() => router.push(`/${item.id}`)}
     >
-      <div className="card__image">
+      <div className="card__image  overflow-hidden">
         <Image
           src={item.img}
           alt="product"
-          width={250}
-          height={250}
+          height={300}
+          width={300}
           className="object-contain aspect-[3/2] group-hover:scale-105 transition-transform duration-300"
         />
       </div>

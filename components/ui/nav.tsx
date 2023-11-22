@@ -1,6 +1,7 @@
-import { Search, ShoppingBagIcon, User } from "lucide-react";
+import { ShoppingBagIcon, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import SearchBar from "../search";
 
 const Navigation = () => {
   return (
@@ -13,18 +14,10 @@ const Navigation = () => {
             width={70}
             height={70}
             alt="logo"
-            className="object-contain aspect-square"
+            className="object-cover"
           />
         </Link>
-        <div className="flex items-center ring-2  bg-slate-50 rounded-lg overflow-hidden ring-slate-400 px-1">
-          <input
-            type="search"
-            className="bg-slate-50  p-1 focus:outline-none rounded-lg placeholder:text-sm placeholder:text-slate-400/80"
-            placeholder="search products here..."
-          />
-          <Search className="cursor-pointer" />
-        </div>
-
+        <SearchBar />
         <div className="icons flex items-center gap-4">
           <ShoppingBagIcon />
           <User />
