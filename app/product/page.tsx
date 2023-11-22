@@ -7,7 +7,6 @@ type ProductsProps = {
   };
 };
 const ProductsPage: React.FC<ProductsProps> = ({ searchParams }) => {
-  console.log(searchParams);
   const page = searchParams.page ?? "1";
   const per_page = searchParams.per_page ?? "4";
   //mocked skipped and limited in the real app

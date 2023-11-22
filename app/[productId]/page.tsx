@@ -12,8 +12,8 @@ type ProductProps = {
 };
 
 const ProductPage = ({ searchParams, params: { productId } }: ProductProps) => {
-  const selectedColor = (searchParams.color || "white>>") as string;
-  const selectedSize = (searchParams.size || "sm") as string;
+  const selectedColor = (searchParams.color ??"white") as string;
+  const selectedSize = (searchParams.size ??"sm") as string;
 
   // code for client component
   // const searchParams = useSearchParams();
