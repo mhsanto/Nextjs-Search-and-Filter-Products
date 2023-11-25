@@ -3,9 +3,10 @@ import Sidebar from "@/components/ui/sidebar/sidebar";
 import Product from "@/components/Product";
 
 import items from "@/lib/data";
-import Link from "next/link";
 import { Suspense } from "react";
 import Skeleton from "./skeleton";
+import Pagination from "./components/pagination";
+import InfiniteScroll from "@/components/infinite-scroll";
 type ProductsProps = {
   searchParams: {
     [key: string]: string | string[] | undefined;
@@ -31,35 +32,22 @@ export default async function Home({ searchParams }: ProductsProps) {
       <Sidebar />
       <Recommended />
       {/* PAGINATION BUTTON */}
-      <section className="w-[90%] mx-auto my-3 pr-0 flex flex-wrap gap-7 justify-center items-center pl-56 ">
+      <section className="w-[90%] mx-auto my-3 pr-0 flex flex-wrap gap-7 justify-center items-center pl-56 relative">
         {/* go backward or forward button  */}
-        <div className="flex gap-3 items-center w-full justify-end ">
-          <Link
-            className={`p-1 select-none bg-black text-white rounded ${
-              !hasPrevPage &&
-              "opacity-50 cursor-not-allowed pointer-events-none"
-            }`}
-            aria-disabled={!hasPrevPage}
-            href={`?page=${page > 1 && page - 1}`}
-          >
-            Previous
-          </Link>
 
-          <div>
-            {page} /{Math.ceil(itemsLength / per_page)}
-          </div>
-
-          <Link
-            className={`p-1 select-none bg-black text-white rounded
-        ${!hasNextPage && "opacity-50 cursor-not-allowed pointer-events-none"}`}
-            href={`?page=${page + 1}`}
-          >
-            Next
-          </Link>
-        </div>
-        <Suspense fallback={<Skeleton/>}>
-          <Product slicedItems={slicedItems} />
+        <Pagination
+          hasPrevPage={hasPrevPage}
+          hasNextPage={hasNextPage}
+          page={page}
+          itemsLength={itemsLength}
+          per_page={per_page}
+        />
+        <Suspense fallback={<Skeleton />}>
+          {slicedItems.map((item) => (
+            <Product key={item.id} item={item} />
+          ))}
         </Suspense>
+        <InfiniteScroll />
       </section>
     </>
   );
