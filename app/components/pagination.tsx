@@ -5,6 +5,7 @@ type PaginationProps = {
   per_page: number;
   itemsLength: number;
   page: number;
+  search?: string;
 };
 const Pagination: React.FC<PaginationProps> = ({
   hasPrevPage,
@@ -12,6 +13,7 @@ const Pagination: React.FC<PaginationProps> = ({
   itemsLength,
   per_page,
   page,
+  search,
 }) => {
   return (
     <>
@@ -20,8 +22,15 @@ const Pagination: React.FC<PaginationProps> = ({
           className={`p-1 select-none bg-black text-white rounded ${
             !hasPrevPage && "opacity-50 cursor-not-allowed pointer-events-none"
           }`}
+          href={{
+            pathname: "/",
+            query: {
+              ...(search ? { search } : {}),
+              page: page > 1 && page - 1,
+            },
+          }}
           aria-disabled={!hasPrevPage}
-          href={`?page=${page > 1 && page - 1}`}
+          // href={`?page=${page > 1 && page - 1}`}
         >
           Previous
         </Link>
@@ -33,7 +42,14 @@ const Pagination: React.FC<PaginationProps> = ({
         <Link
           className={`p-1 select-none bg-black text-white rounded
     ${!hasNextPage && "opacity-50 cursor-not-allowed pointer-events-none"}`}
-          href={`?page=${page + 1}`}
+          href={{
+            pathname: "/",
+            query: {
+              ...(search ? { search } : {}),
+              page: page + 1,
+            },
+          }}
+          // href={`?page=${page + 1}`}
         >
           Next
         </Link>

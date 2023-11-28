@@ -5,9 +5,6 @@ import { useInView } from "react-intersection-observer";
 
 import items from "@/lib/data";
 import { Product as ProductType } from "@/type";
-import Link from "next/link";
-import Image from "next/image";
-import { ShoppingBag } from "lucide-react";
 import Product from "./Product";
 let page = 2;
 const InfiniteScroll = () => {

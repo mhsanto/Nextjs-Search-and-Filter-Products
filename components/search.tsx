@@ -2,26 +2,20 @@
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { useDebounce } from "use-debounce";
 const SearchBar = () => {
   const [text, setText] = useState("");
   const router = useRouter();
   // const params = useSearchParams();
-
+  const [query] = useDebounce(text, 500);
   useEffect(() => {
-    if (text.length > 0) {
-      router.push(`?search=${text}`, {
+    if (query.length > 0) {
+      router.push(`?search=${query}`, {
         scroll: false,
       });
     }
-  }, [text, router]);
-  const handleSearchParams = useCallback((debounceValue: string) => {
-    let params = new URLSearchParams(window.location.search);
-    if (debounceValue.length > 0) {
-      params.set("search", debounceValue);
-    } else {
-      params.delete("search");
-    }
-  }, []);
+  }, [query, router]);
+
   return (
     <div className="flex items-center ring-2  bg-slate-50 rounded-lg overflow-hidden ring-slate-400 px-1">
       <input

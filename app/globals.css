@@ -6,19 +6,3 @@ html,
 body {
   height: 100%;
 }
-.grid__design {
-  display: flex;
-  width: 100%;
-  grid-template-columns: 300px 2fr;
-  justify-content: space-betweens;
-}
-.grid_design_2 {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
-}
-.grid_design_2 > * {
-  flex-grow: 1;
-  flex-shrink: 1;
-}

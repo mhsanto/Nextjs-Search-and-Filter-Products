@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import Skeleton from "./skeleton";
 import Pagination from "./components/pagination";
 import InfiniteScroll from "@/components/infinite-scroll";
+import { Product as ProductsType } from "@/type";
 type ProductsProps = {
   searchParams: {
     [key: string]: string | string[] | undefined;
@@ -20,6 +21,8 @@ export default async function Home({ searchParams }: ProductsProps) {
     typeof searchParams.per_page === "string"
       ? Number(searchParams.per_page)
       : 6;
+  const search =
+    typeof searchParams.search === "string" ? searchParams.search : undefined;
   //mocked skipped and limited in the real app
   const start = (page - 1) * per_page;
   const end = start + per_page; // 5,10,15
@@ -27,6 +30,12 @@ export default async function Home({ searchParams }: ProductsProps) {
   const itemsLength = items.length;
   const hasPrevPage = start > 0;
   const hasNextPage = end < items.length;
+  // filter products using search query
+  const filteredItems: ProductsType[] = search
+    ? items.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+      )
+    : slicedItems;
   return (
     <>
       <Sidebar />
@@ -41,11 +50,14 @@ export default async function Home({ searchParams }: ProductsProps) {
           page={page}
           itemsLength={itemsLength}
           per_page={per_page}
+          search={search}
         />
         <Suspense fallback={<Skeleton />}>
-          {slicedItems.map((item) => (
-            <Product key={item.id} item={item} />
-          ))}
+          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3  gap-3 md:gap-7 justify-center">
+            {filteredItems.map((item) => (
+              <Product key={item.id} item={item} />
+            ))}
+          </div>
         </Suspense>
         <InfiniteScroll />
       </section>
