@@ -1,8 +1,8 @@
+"use client";
 import { ShoppingBagIcon, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import SearchBar from "../search";
-
+import SearchBar from "./search";
 const Navigation = () => {
   return (
     <nav className="w-full bg-white text-black relative z-20 shadow-md">

@@ -1,19 +1,28 @@
 "use client";
 import { Search } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
-const SearchBar = () => {
+const SearchBar = ({ search }: { search?: string }) => {
   const [text, setText] = useState("");
   const router = useRouter();
+  const initialRender = useRef(true);
   // const params = useSearchParams();
   const [query] = useDebounce(text, 500);
   useEffect(() => {
-    if (query.length > 0) {
-      router.push(`?search=${query}`, {
-        scroll: false,
-      });
+    if (initialRender.current) {
+      initialRender.current = false;
+      return;
     }
+    // if (!query) {
+    //   router.push("/", {
+    //     scroll: false,
+    //   });
+    // } else {
+    //   router.push(`?search=${query}`, {
+    //     scroll: false,
+    //   });
+    // }
   }, [query, router]);
 
   return (

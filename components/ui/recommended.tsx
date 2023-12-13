@@ -2,6 +2,10 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
+type RecommendedProps = {
+  search?: string;
+  page?: number;
+};
 const recommendations = [
   {
     id: 4,
@@ -9,23 +13,28 @@ const recommendations = [
     url: "all",
   },
   {
+    id: 43,
+    name: "Sandals",
+    url: "Sandals",
+  },
+  {
     id: 1,
-    name: "Nike",
-    url: "nike",
+    name: "Sneakers",
+    url: "sneakers",
   },
   {
     id: 2,
-    name: "Puma",
-    url: "puma",
+    name: "Heels",
+    url: "Heels",
   },
   {
     id: 3,
-    name: "Adidas",
-    url: "adidas",
+    name: "Flats",
+    url: "flats",
   },
 ];
 
-const Recommended = () => {
+const Recommended: React.FC<RecommendedProps> = ({search,page}) => {
   const searchParams = useSearchParams();
   const current = searchParams.get("rec") ?? "all";
 
@@ -34,7 +43,13 @@ const Recommended = () => {
       <ul className="flex gap-3 ">
         {recommendations.map((item) => (
           <Link
-            href={`/?rec=${item.url}`}
+            href={{
+              pathname: "/",
+              query: {
+                ...(search || page ? { search, page } : {}),
+                rec: item.url,
+              },
+            }}
             key={item.id}
             className={`px-3 py-1 w-20 flex items-center  justify-center select-none rounded ring-2 cursor-pointer${
               current === item.url ? " bg-black text-white " : ""
