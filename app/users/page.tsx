@@ -121,7 +121,7 @@ const SortableComponent: React.FC<SortableComponentProps> = ({
       scope="col"
     >
       <Link
-        href={`${sortElement ? `?sort=${newSearchParams}` : "/users"}`}
+        href={`${sortElement ? `?${newSearchParams}` : "/users"}`}
         className="flex items-center group "
       >
         {children}
