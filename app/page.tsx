@@ -5,7 +5,7 @@ import Product from "@/components/Product";
 import items from "@/lib/data";
 import { Suspense } from "react";
 import Skeleton from "./skeleton";
-import Pagination from "./components/pagination";
+import Pagination from "./product/components/pagination"; 
 import InfiniteScroll from "@/components/infinite-scroll";
 import { Product as ProductsType } from "@/type";
 type ProductsProps = {
@@ -47,10 +47,10 @@ export default async function Home({ searchParams }: ProductsProps) {
 
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar /> */}
       <Recommended search={search} page={page} />
       {/* PAGINATION BUTTON */}
-      <section className="w-[90%] mx-auto my-3 pr-0 flex flex-wrap gap-7 justify-center items-center pl-56 relative">
+      <section className="w-[90%] mx-auto my-3 pr-0 flex flex-wrap gap-7 justify-center items-center  relative">
         {/* go backward or forward button  */}
 
         <Pagination

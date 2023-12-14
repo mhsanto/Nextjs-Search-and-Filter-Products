@@ -17,8 +17,10 @@ const Navigation = () => {
             className="object-cover"
           />
         </Link>
+
         <SearchBar />
         <div className="icons flex items-center gap-4">
+          <Link href="/users" className="text-base underline underline-offset-2 font-medium">Users</Link>
           <ShoppingBagIcon />
           <User />
         </div>

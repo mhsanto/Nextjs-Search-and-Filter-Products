@@ -24,7 +24,7 @@ const Product: React.FC<ProductProps> = async ({ item }) => {
               href={`${item.id}`}
               className="flex-grow  bg-white text-black rounded-sm px-2 group overflow-hidden transition-all duration-300 cursor-pointer hover:ring-2 border-transparent"
             >
-              <div className=" overflow-hidden">
+              <div className="overflow-hidden">
                 <Image
                   src={item.img}
                   alt="product"
