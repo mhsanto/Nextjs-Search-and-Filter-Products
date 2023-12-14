@@ -1,4 +1,5 @@
 import items from "@/lib/data";
+import { Product } from "@/type";
 import Image from "next/image";
 import Link from "next/link";
 
