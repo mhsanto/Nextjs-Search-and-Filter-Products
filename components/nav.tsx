@@ -21,6 +21,7 @@ const Navigation = () => {
         <SearchBar />
         <div className="icons flex items-center gap-4">
           <Link href="/users" className="text-base underline underline-offset-2 font-medium">Users</Link>
+          <Link href="/products" className="text-base underline underline-offset-2 font-medium">Products</Link>
           <ShoppingBagIcon />
           <User />
         </div>

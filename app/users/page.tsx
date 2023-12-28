@@ -1,6 +1,6 @@
 // "use client";
 import { faker } from "@faker-js/faker";
-import { ArrowDown, CaseLower } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import Link from "next/link";
 
 let people = faker.datatype.array(20).map(() => {
