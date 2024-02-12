@@ -8,20 +8,14 @@ type ProductProps = {
 };
 
 const Product: React.FC<ProductProps> = async ({ item }) => {
-  // const awaitItems = new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve(item);
-  //   }, 3000);
-  // });
-  // const items = await awaitItems;
-  // console.log(item);
+
   return (
     <>
       {item
         ? item.map((item: Product) => (
             <Link
               key={item.id}
-              href={`${item.id}`}
+              href={`/product/${item.id}`}
               className="flex-grow  bg-white text-black rounded-sm px-2 group overflow-hidden transition-all duration-300 cursor-pointer hover:ring-2 border-transparent"
             >
               <div className="overflow-hidden">

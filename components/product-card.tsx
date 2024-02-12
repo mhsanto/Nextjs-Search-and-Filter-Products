@@ -13,7 +13,7 @@ export function ProductCard(product: Product) {
   url.searchParams.set("id", product.id.toString());
 
   return (
-    <div className="max-w-max rounded-lg overflow-hidden bg-green-900 shadow-md flex flex-col ">
+    <div className="max-w-max rounded-lg overflow-hidden bg-green-950 shadow-md flex flex-col ">
       <Link
         className="aspect-square h-[300px] flex justify-center w-full relative bg-slate-50 border-zinc-300 rounded-t-lg"
         href={url.toString()}
